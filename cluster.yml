@@ -1,0 +1,7 @@
+nodes:
+  - address: tccmurilo.sj.ifsc.edu.br
+    user: root
+    role:
+    - controlplane
+    - etcd
+    - worker

@@ -1,0 +1,28 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: gerrit-master-gerrit-ingress
+  labels:
+    app: gerrit
+    release: gerrit-master
+  managedFields:
+    - apiVersion: networking.k8s.io/v1
+      manager: rancher
+  namespace: default
+spec:
+  rules:
+    - host: tccmurilo.sj.ifsc.edu.br
+      http:
+        paths:
+          - backend:
+              service:
+                name: gerrit-master-gerrit-service
+                port:
+                  number: 80
+            path: /gerrit
+            pathType: Prefix
+  tls:
+status:
+  loadBalancer:
+    ingress:
+      - ip: 191.36.8.57
