@@ -1,7 +1,37 @@
 nodes:
-  - address: tccmurilo.sj.ifsc.edu.br
-    user: root
-    role:
-    - controlplane
-    - etcd
-    - worker
+- address: tccmurilo.sj.ifsc.edu.br
+  role:
+  - controlplane
+  - worker
+  - etcd
+  user: root
+  ssh_key_path: /root/.ssh/id_rsa
+
+network:
+  plugin: canal
+
+#authentication:
+#  strategy: x509
+
+ssh_key_path: /root/.ssh/id_rsa
+
+cluster_name: clustertccmurilo
+
+ingress:
+  provider: nginx
+  options:
+     use-forwarded-headers: "true"
+  extra_args:
+    default-ssl-certificate: "ingress-nginx/ingress-default-cert"
+
+addons: |-
+   apiVersion: v1
+   data:
+     tls.crt: /etc/letsencrypt/live/tccmurilo.sj.ifsc.edu.br/cert.pem
+     tls.key: /etc/letsencrypt/live/tccmurilo.sj.ifsc.edu.br/privkey.pem
+   kind: Secret
+   metadata:
+     creationTimestamp: null
+     name: ingress-default-cert
+     namespace: ingress-nginx
+   type: kubernetes.io/tls

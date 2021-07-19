@@ -1,0 +1,64 @@
+# Values for gitlab/gitlab chart on GKE
+certmanager-issuer:
+  email: murilo.bauer90@gmail.com
+global:
+  edition: ce
+  hosts:
+    domain: tccmurilo.sj.ifsc.edu.br
+    https: false
+    externalIP: 191.36.8.57
+    gitlab:
+      name: tccmurilo.sj.ifsc.edu.br
+      https: false
+    registry:
+      name: tccmurilo.sj.ifsc.edu.br
+      https: false
+    minio:
+      name: tccmurilo.sj.ifsc.edu.br
+      https: false
+  ingress:
+    configureCertmanager: false
+#    class: "nginx"
+#    enabled: true
+    tls:
+      enabled: true
+      secretName: tls-gitlab
+    annotations:
+      "nginx.ingress.kubernetes.io/ssl-redirect": "false"
+#    path: /
+#    pathType: Prefix
+prometheus:
+  install: true
+certmanager:
+  install: false
+nginx-ingress:
+  enabled: false
+gitlab-runner:
+  install: false
+#  certsSecretName: tls-gitlab
+#  tls:
+#    SecretName: tls-gitlab
+#  rbac:
+#    create: true
+#  runners:
+#    privileged: true
+redis:
+  install: true
+gitlab:
+  gitaly:
+    persistence:
+      storageClass: nfs
+postgresql:
+  persistence:
+    storageClass: nfs
+minio:
+  persistence:
+    storageClass: nfs
+redis:
+  master:
+    persistence:
+      storageClass: nfs
+prometheus:
+  server:
+    persistence:
+      storageClass: nfs
