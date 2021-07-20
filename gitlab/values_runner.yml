@@ -1,0 +1,19 @@
+gitlabUrl: http://tccmurilo.sj.ifsc.edu.br/
+runnerRegistrationToken: gXPKUquayFg8suutYe2t
+concurrent: 10
+rbac:
+  create: true
+#  clusterWideAccess: false
+  certsSecretName: tls-tcc
+runners:
+  image: ubuntu:18.04
+  privileged: false
+#  builds:
+#    cpuRequests: 100m
+#    memoryRequests: 128Mi
+#  services:
+#    cpuRequests: 100m
+#    memoryRequests: 128Mi
+#  helpers:
+#    cpuRequests: 100m
+#    memoryRequests: 128Mi

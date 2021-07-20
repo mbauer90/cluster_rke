@@ -19,8 +19,8 @@ spec:
             name: gitlab-webservice-default
             port:
               number: 8181
-#      - path: /gerrit(/|$)(.*)
-      - path: /gerrit/(.*)
+      - path: /gerrit(/|$)(.*)
+#      - path: /gerrit/(.*)
         pathType: Prefix
         backend:
           service:

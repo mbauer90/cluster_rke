@@ -21,7 +21,7 @@ global:
 #    class: "nginx"
 #    enabled: true
     tls:
-      enabled: true
+      enabled: false
       secretName: tls-tcc
     annotations:
       "nginx.ingress.kubernetes.io/ssl-redirect": "false"
