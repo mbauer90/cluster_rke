@@ -22,11 +22,9 @@ global:
 #    enabled: true
     tls:
       enabled: true
-      secretName: tls-gitlab
+      secretName: tls-tcc
     annotations:
       "nginx.ingress.kubernetes.io/ssl-redirect": "false"
-#    path: /
-#    pathType: Prefix
 prometheus:
   install: true
 certmanager:
@@ -35,13 +33,6 @@ nginx-ingress:
   enabled: false
 gitlab-runner:
   install: false
-#  certsSecretName: tls-gitlab
-#  tls:
-#    SecretName: tls-gitlab
-#  rbac:
-#    create: true
-#  runners:
-#    privileged: true
 redis:
   install: true
 gitlab:
