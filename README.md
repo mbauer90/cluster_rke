@@ -41,9 +41,11 @@ ls -lah /etc/letsencrypt/live/tccmurilo.sj.ifsc.edu.br/
 /etc/letsencrypt/live/tccmurilo.sj.ifsc.edu.br/privkey.pem
 
 ### CRIAR SECRET COM CERTIFICADO E CHAVE
-kubectl -n default create secret tls tls-tcc \
---cert=/etc/letsencrypt/live/tccmurilo.sj.ifsc.edu.br/cert.pem \
---key=/etc/letsencrypt/live/tccmurilo.sj.ifsc.edu.br/privkey.pem
+kubectl -n ingress-nginx create secret tls ingress-default-cert \\
+--cert=/etc/letsencrypt/live/tccmurilo.sj.ifsc.edu.br/fullchain.pem \\
+--key=/etc/letsencrypt/live/tccmurilo.sj.ifsc.edu.br/privkey.pem -o yaml > ingress-default-cert.yaml
+
+kubect create -f ingress-default-cert.yaml
 
 ### INSTALAR O MIRANTIS LENS (MÁQUINA LOCAL)
 sudo snap install kontena-lens --classic
