@@ -22,7 +22,8 @@ global:
 #    enabled: true
     tls:
       enabled: false
-      secretName: tls-tcc
+#      secretName: tls-tcc
+      secretName: ingress-default-cert
     annotations:
       "nginx.ingress.kubernetes.io/ssl-redirect": "false"
 prometheus:
