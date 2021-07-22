@@ -26,4 +26,5 @@ spec:
   tls:
   - hosts:
     - tccmurilo.sj.ifsc.edu.br
-    secretName: tls-gitlab
+    secretName: ingress-default-cert
+#    secretName: tls-tcc
