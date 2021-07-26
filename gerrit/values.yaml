@@ -211,13 +211,22 @@ gerrit:
           # LoadBalancer's external IP. This can only be done manually after installing
           # the chart, when you know the external IP the LoadBalancer got from the
           # cluster.
-          canonicalWebUrl = http://example.com/
+          canonicalWebUrl = http://gerrit.tccmurilo.sj.ifsc.edu.br/
           disableReverseDnsLookup = true
         [index]
           type = LUCENE
           onlineUpgrade = false # FIXED
         [auth]
-          type = DEVELOPMENT_BECOME_ANY_ACCOUNT
+          # type = DEVELOPMENT_BECOME_ANY_ACCOUNT
+          type = LDAP
+        [ldap]
+          server = ldap://xxxxxxxxxxxxx
+          username = xxxxxxxxxxxxxxxx
+          accountBase = xxxxxxxxxxxxxxxxxxxxxx
+          accountPattern = (&(uid=${username}))
+          accountFullName = cn
+          supportAnonymous = false
+          password = xxxxxxxxxxxxx
         [httpd]
           # If using an ingress use proxy-http or proxy-https
           listenUrl = proxy-http://*:8080
