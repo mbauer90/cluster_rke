@@ -62,8 +62,8 @@ gitRepositoryStorage:
 caCert:
 
 ingress:
-  enabled: false
-  host:
+  enabled: true
+  host: gerrit.tccmurilo.sj.ifsc.edu.br
   # The maximum body size to allow for requests. Use "0" to allow unlimited
   # reuqest body sizes.
   maxBodySize: 50m
@@ -220,7 +220,7 @@ gerrit:
           type = DEVELOPMENT_BECOME_ANY_ACCOUNT
         [httpd]
           # If using an ingress use proxy-http or proxy-https
-          listenUrl = proxy-http://*:8080/
+          listenUrl = proxy-http://*:8080
           requestLog = true
         [sshd]
           listenAddress = off

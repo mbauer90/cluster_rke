@@ -2,20 +2,32 @@
 certmanager-issuer:
   email: murilo.bauer90@gmail.com
 global:
+  appConfig:
+    ldap:
+      enabled: true
+      preventSignin: false
+      servers:
+        main:
+#          bind_dn: 'cn=mbauer,ou=Developer,dc=sj,dc=ifsc,dc=edu,dc=br'
+          bind_dn: 'cn=admin,dc=sj,dc=ifsc,dc=edu,dc=br'
+#          base: 'ou=Developer,dc=sj,dc=ifsc,dc=edu,dc=br'
+          base: 'dc=sj,dc=ifsc,dc=edu,dc=br'
+          host: '191.36.8.57'
+          label: 'LDAP'
+          port: 389
+          uid: 'uid'
+#          user_filter: '\\(sAMAccountName=%u\\)'
+#          user_filter: 'objectclass=*'
+#	   user_filter: '(&(objectClass=posixAccount))'
+          password:
+            key: password
+            secret: ldap-secret
+#          encryption: 'plain'
   edition: ce
   hosts:
-    domain: tccmurilo.sj.ifsc.edu.br
+    domain: sj.ifsc.edu.br
     https: false
     externalIP: 191.36.8.57
-    gitlab:
-      name: tccmurilo.sj.ifsc.edu.br
-      https: false
-    registry:
-      name: tccmurilo.sj.ifsc.edu.br
-      https: false
-    minio:
-      name: tccmurilo.sj.ifsc.edu.br
-      https: false
   ingress:
     configureCertmanager: false
 #    class: "nginx"
