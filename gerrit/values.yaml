@@ -188,7 +188,7 @@ gerrit:
     - reviewnotes
     downloaded:
     # - name: delete-project
-    #   url: https://example.com/gerrit-plugins/delete-project.jar
+    #   url: https://gerrit-ci.gerritforge.com/job/plugin-delete-project-bazel-stable-2.16/lastSuccessfulBuild/artifact/bazel-bin/plugins/delete-project/delete-project.jar
     #   sha1:
     installAsLibrary: []
     # Only downloaded plugins will be cached. This will be ignored, if no plugins
@@ -220,13 +220,12 @@ gerrit:
           # type = DEVELOPMENT_BECOME_ANY_ACCOUNT
           type = LDAP
         [ldap]
-          server = ldap://xxxxxxxxxxxxx
-          username = xxxxxxxxxxxxxxxx
-          accountBase = xxxxxxxxxxxxxxxxxxxxxx
+          server = XXXXXXXXXXXXXXXXX
+          username = XXXXXXXXXXXXXXXXXXXX
+          password = XXXXXXXXXXXX
+          accountBase = XXXXXXXXXXXXXXXXXXXXXXX
           accountPattern = (&(uid=${username}))
-          accountFullName = cn
           supportAnonymous = false
-          password = xxxxxxxxxxxxx
         [httpd]
           # If using an ingress use proxy-http or proxy-https
           listenUrl = proxy-http://*:8080
@@ -236,8 +235,8 @@ gerrit:
         [transfer]
           timeout = 120 s
         [user]
-          name = Gerrit Code Review
-          email = gerrit@example.com
+          name = Admin
+          email = example@example.com
           anonymousCoward = Unnamed User
         [cache]
           directory = cache
@@ -256,10 +255,17 @@ gerrit:
           replicateOnStartup = true
           defaultForceUpdate = true
 
-        # [remote "replica"]
-        # url = http://gerrit-replica.example.com/git/${name}.git
-        # replicationDelay = 0
-        # timeout = 30
+         [remote "gitlab"]
+          # projects = teste
+          # url = http://gitlab.tccmurilo.sj.ifsc.edu.br/root/teste.git
+          url = http://gitlab.tccmurilo.sj.ifsc.edu.br/cluster_rke/${name}.git
+          # url = root@gitlab.tccmurilo.sj.ifsc.edu.br/cluster_rke/${name}.git
+          #mirror = true
+          #push = +refs/heads/*:refs/heads/*
+          #push = +refs/tags/*:refs/tags/*
+          #authGroup = Revisores
+          replicationDelay = 0
+          timeout = 30
 
     secret:
       secure.config: |-
@@ -269,9 +275,9 @@ gerrit:
         #  sslKeyPassword = gerrit
 
         # Credentials for replication targets
-        # [remote "replica"]
-        # username = git
-        # password = secret
+         [remote "gitlab"]
+         username = XXXXXXXXXXXX
+         password = XXXXXXXXXXXX
 
   additionalConfigMaps:
     # - name:

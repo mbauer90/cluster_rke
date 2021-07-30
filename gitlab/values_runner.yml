@@ -1,13 +1,16 @@
-gitlabUrl: http://tccmurilo.sj.ifsc.edu.br/
-runnerRegistrationToken: gXPKUquayFg8suutYe2t
-concurrent: 10
+gitlabUrl: https://gitlab.tccmurilo.sj.ifsc.edu.br/
+runnerRegistrationToken: K6kzFuDEyyUGTNuJ27Cb
+#concurrent: 10
 rbac:
   create: true
-#  clusterWideAccess: false
-  certsSecretName: tls-tcc
+  clusterWideAccess: false
 runners:
-  image: ubuntu:18.04
-  privileged: false
+  tags: "k8s,k8s-runner,dev"
+#  certsSecretName: tls-tcc
+#  certsSecretName: ingress-default-cert
+#runners:
+#  image: ubuntu:18.04
+#  privileged: false
 #  builds:
 #    cpuRequests: 100m
 #    memoryRequests: 128Mi
