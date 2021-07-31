@@ -3,9 +3,11 @@ runnerRegistrationToken: K6kzFuDEyyUGTNuJ27Cb
 #concurrent: 10
 rbac:
   create: true
-  clusterWideAccess: false
+#  serviceAccountName: gitlab-admin
+#  clusterWideAccess: true
 runners:
   tags: "k8s,k8s-runner,dev"
+  serviceAccountName: gitlab-admin
 #  certsSecretName: tls-tcc
 #  certsSecretName: ingress-default-cert
 #runners:

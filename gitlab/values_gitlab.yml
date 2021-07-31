@@ -2,6 +2,10 @@
 certmanager-issuer:
   email: murilo.bauer90@gmail.com
 global:
+  serviceAccount:
+    enabled: true
+    create: false
+    name: gitlab-admin
   appConfig:
     ldap:
       enabled: true
