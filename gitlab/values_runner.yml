@@ -1,24 +1,14 @@
 gitlabUrl: https://gitlab.tccmurilo.sj.ifsc.edu.br/
 runnerRegistrationToken: K6kzFuDEyyUGTNuJ27Cb
+namespace: teste
 #concurrent: 10
 rbac:
   create: true
 #  serviceAccountName: gitlab-admin
-#  clusterWideAccess: true
+  clusterWideAccess: true
 runners:
   tags: "k8s,k8s-runner,dev"
   serviceAccountName: gitlab-admin
+#  serviceAccountName: default
 #  certsSecretName: tls-tcc
 #  certsSecretName: ingress-default-cert
-#runners:
-#  image: ubuntu:18.04
-#  privileged: false
-#  builds:
-#    cpuRequests: 100m
-#    memoryRequests: 128Mi
-#  services:
-#    cpuRequests: 100m
-#    memoryRequests: 128Mi
-#  helpers:
-#    cpuRequests: 100m
-#    memoryRequests: 128Mi
