@@ -45,7 +45,7 @@ kubectl -n ingress-nginx create secret tls ingress-default-cert \\
 --cert=/etc/letsencrypt/live/tccmurilo.sj.ifsc.edu.br/fullchain.pem \\
 --key=/etc/letsencrypt/live/tccmurilo.sj.ifsc.edu.br/privkey.pem -o yaml > ingress-default-cert.yaml
 
-kubect create -f ingress-default-cert.yaml
+kubectl create -f ingress-default-cert.yaml
 
 ### INSTALAR O MIRANTIS LENS (MÁQUINA LOCAL)
 sudo snap install kontena-lens --classic
@@ -68,6 +68,8 @@ helm repo update
 
 helm install app-ingress ingress-nginx/ingress-nginx
 ### INSTALAR GITLAB
+kubectl create -f ldap-secret.yaml
+kubectl create -f gitlab-admin-service-account.yaml
 kubectl create -f pvc_gitlab_geral.yml
 
 helm upgrade --install gitlab gitlab/gitlab --timeout 600s  -f gitlab/values_gitlab.yml
