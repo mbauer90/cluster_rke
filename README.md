@@ -68,9 +68,9 @@ helm repo update
 
 helm install app-ingress ingress-nginx/ingress-nginx
 ### INSTALAR GITLAB
-kubectl create -f ldap-secret.yaml
-kubectl create -f gitlab-admin-service-account.yaml
-kubectl create -f pvc_gitlab_geral.yml
+kubectl create -f ldap-secret.yaml \\
+kubectl create -f gitlab-admin-service-account.yaml \\
+kubectl create -f pvc_gitlab_geral.yml \\
 
 helm upgrade --install gitlab gitlab/gitlab --timeout 600s  -f gitlab/values_gitlab.yml
 
@@ -84,3 +84,6 @@ helm install --namespace default gitlab-runner gitlab/gitlab-runner -f gitlab/va
 kubectl create -f gerrit/gerrit_nfs.yml
 
 helm install gerrit-master k8s-gerrit/helm-charts/gerrit -n default -f k8s-gerrit/helm-charts/gerrit/values.yaml
+
+### INSTALAR JENKINS
+helm install jenkins jenkins/jenkins -f values_jenkins.yaml
