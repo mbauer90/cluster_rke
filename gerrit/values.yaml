@@ -19,21 +19,17 @@ storageClasses:
     parameters:
       mountOptions: vers=4.1
 
-
 networkPolicies:
   enabled: false
   dnsPorts:
   - 53
   - 8053
 
-
 gitRepositoryStorage:
   externalPVC:
     use: false
     name: git-repositories-pvc
   size: 5Gi
-
-caCert:
 
 ingress:
   enabled: true
@@ -62,7 +58,6 @@ gitGC:
       enabled: true
       size: 1Gi
 
-
 gerrit:
   images:
     gerritInit: k8sgerrit/gerrit-init
@@ -71,7 +66,6 @@ gerrit:
   replicas: 1
   updatePartition: 0
 
-  # The memory limit has to be higher than the configures heap-size for Java!
   resources:
     requests:
       cpu: 1
@@ -95,7 +89,6 @@ gerrit:
   startupProbe:
     initialDelaySeconds: 10
     periodSeconds: 30
-
 
   service:
     type: ClusterIP
