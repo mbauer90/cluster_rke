@@ -89,14 +89,14 @@ helm install gerrit-master k8s-gerrit/helm-charts/gerrit -n default -f k8s-gerri
 helm install jenkins jenkins/jenkins -f values_jenkins.yaml
 
 # INSTALAR SONARQUBE
-helm upgrade --install sonarqube oteemocharts/sonarqube -f values_sonarqube_v2.yml
+helm upgrade --install sonarqube oteemocharts/sonarqube -f values_sonarqube_v2.yml \\
 
 Criar projeto com o mesmo nome.
 Adicionando via Administração -> Marketing o plugin do YAML Analyzer
 
-*INTEGRAÇÃO GITLAB + KUBERNETES*
-API URL: kubectl cluster-info | grep -E 'Kubernetes master|Kubernetes control plane' | awk '/http/ {print $NF}'
-kubectl get secret default-token-bqqhn -o jsonpath="{['data']['ca\.crt']}" | base64 --decode
-TOKEN: kubectl describe secret gitlab-admin-token-8fbw4
+**INTEGRAÇÃO GITLAB + KUBERNETES**
+API URL: kubectl cluster-info | grep -E 'Kubernetes master|Kubernetes control plane' | awk '/http/ {print $NF}' \\
+kubectl get secret default-token-bqqhn -o jsonpath="{['data']['ca\.crt']}" | base64 --decode \\
+TOKEN: kubectl describe secret gitlab-admin-token-8fbw4 \\
 
 Project -> Settings -> CI/CD -> Variables -> Add "SONAR_LOGIN"
