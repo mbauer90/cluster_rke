@@ -1,0 +1,40 @@
+stages:
+  - build
+  - sonarqube
+  - deploykubectl
+
+build:
+  stage: build
+  script:
+    - echo "Inicio pipeline"
+  tags:
+    - k8s
+    - dev
+    - k8s-runner
+
+sonarqube:
+  stage: sonarqube
+  image: sonarsource/sonar-scanner-cli:latest
+  script:
+    - echo "Teste"
+    #- sonar-scanner -Dsonar.projectKey=hello-app -Dsonar.sources=. -Dsonar.host.url=https://grafana.tccmurilo.sj.ifsc.edu.br -Dsonar.login=2c9bcdb8aba677513a54c2720c95358127381cf4
+    #- sonar-scanner -Dsonar.projectKey=hello-app -Dsonar.host.url=https://grafana.tccmurilo.sj.ifsc.edu.br
+    #- sonar-scanner -Dsonar.projectKey=hello-app -Dsonar.host.url=https://grafana.tccmurilo.sj.ifsc.edu.br -Dsonar.qualitygate.wait=true
+    #- sonar-scanner -Dsonar.projectKey=hello-app -Dsonar.qualitygate.wait=true -Dsonar.analysis.mode=preview 
+    -  sonar-scanner -Dsonar.projectKey=hello-app -Dsonar.qualitygate.wait=true
+  tags:
+    - k8s
+    - dev
+    - k8s-runner
+
+deploykubectl:
+  stage: deploykubectl
+  image: bitnami/kubectl:latest
+  script:
+    - kubectl apply -f deployment.yaml -n default
+    - kubectl apply -f service.yaml -n default
+    - kubectl apply -f ingress.yaml -n default
+  tags:
+    - k8s
+    - dev
+    - k8s-runner

@@ -1,0 +1,33 @@
+# Values for gitlab/gitlab chart on GKE
+global:
+  edition: ce
+  hosts:
+    domain: tccmurilo.sj.ifsc.edu.br
+    https: false
+    externalIP: 191.36.8.57
+prometheus:
+  install: true
+certmanager:
+  install: false
+nginx-ingress:
+  enabled: true
+gitlab-runner:
+  install: false
+gitlab:
+  gitaly:
+    persistence:
+      storageClass: nfs
+#      size: 30Gi
+postgresql:
+  persistence:
+    storageClass: nfs
+#    size: 8Gi
+minio:
+  persistence:
+    storageClass: nfs
+#    size: 10Gi
+redis:
+  master:
+    persistence:
+      storageClass: nfs
+#      size: 5Gi

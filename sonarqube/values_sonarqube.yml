@@ -1,0 +1,18 @@
+ingress:
+  enabled: true
+  annotations: {}
+  ingressClassName: ""
+  hosts:
+     - gerrit.tccmurilo.sj.ifsc.edu.br
+  tls:
+     - hosts:
+         - gerrit.tccmurilo.sj.ifsc.edu.br
+       secretName: ingress-default-cert
+
+persistence:
+  enabled: true
+  annotations: {}
+  # existingClaim: existing-pvc
+  accessMode: ReadWriteOnce
+  storageClass: nfs
+  size: 8Gi

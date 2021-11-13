@@ -1,6 +1,6 @@
 gitlabUrl: https://gitlab.tccmurilo.sj.ifsc.edu.br/
-runnerRegistrationToken: K6kzFuDEyyUGTNuJ27Cb
-namespace: teste
+runnerRegistrationToken: 3k27P7kexLFbLsp_vY7F
+namespace: gdesenv
 #concurrent: 10
 rbac:
   create: true
@@ -9,6 +9,7 @@ rbac:
 runners:
   tags: "k8s,k8s-runner,dev"
   serviceAccountName: gitlab-admin
+  privileged: true
 #  serviceAccountName: default
 #  certsSecretName: tls-tcc
 #  certsSecretName: ingress-default-cert

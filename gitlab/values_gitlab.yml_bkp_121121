@@ -9,12 +9,11 @@ global:
   #smtp:
   #  enabled: true
   #  address: 'smtp.gmail.com'
-  #  tls: yes
+  #  tls: true
   #  authentication: 'plain'
-  #  port: 587
   #  user_name: 'mbauertele@gmail.com'
   #  password:
-  #    secret: 'smtp-secret'
+  #    secret: 'smtp-password'
   #    key: 'password'
   serviceAccount:
     enabled: true

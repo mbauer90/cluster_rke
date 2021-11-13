@@ -1,0 +1,58 @@
+service:
+  type: ClusterIP
+  externalPort: 9000
+  internalPort: 9000
+  labels:
+  annotations: {}
+
+ingress:
+  enabled: true
+  hosts:
+    - name: grafana.tccmurilo.sj.ifsc.edu.br
+      path: /
+  annotations: {}
+  tls:
+   - secretName: ingress-default-cert
+     hosts:
+       - grafana.tccmurilo.sj.ifsc.edu.br
+persistence:
+  enabled: true
+  annotations: {}
+  storageClass: nfs
+  accessMode: ReadWriteOnce
+  size: 10Gi
+
+jdbcDatabaseType: postgresql
+
+postgresql:
+  enabled: true
+  postgresqlUsername: "sonarUser"
+  postgresqlPassword: "sonarPass"
+  postgresqlDatabase: "sonarDB"
+  service:
+    port: 5432
+  resources:
+    limits:
+      cpu: 2
+      memory: 2Gi
+    requests:
+      cpu: 100m
+      memory: 200Mi
+  persistence:
+    enabled: true
+    accessMode: ReadWriteOnce
+    size: 20Gi
+    storageClass: nfs
+  securityContext:
+    enabled: true
+    fsGroup: 1001
+    runAsUser: 1001
+  volumePermissions:
+    enabled: false
+    securityContext:
+      runAsUser: 0
+  shmVolume:
+    chmod:
+      enabled: false
+  serviceAccount:
+    enabled: false

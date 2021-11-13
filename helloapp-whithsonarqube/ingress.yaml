@@ -1,0 +1,28 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: nginx
+  name: hello-node
+  namespace: default
+spec:
+  rules:
+  - host: tccmurilo.sj.ifsc.edu.br
+    http:
+      paths:
+      - backend:
+          service:
+            name: hello-node
+            port:
+              number: 8080
+        path: /hello
+        pathType: Prefix
+  tls:
+  - hosts:
+    - tccmurilo.sj.ifsc.edu.br
+    secretName: ingress-default-cert
+status:
+  loadBalancer:
+    ingress:
+    - hostname: tccmurilo.sj.ifsc.edu.br
