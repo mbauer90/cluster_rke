@@ -86,6 +86,8 @@ kubectl create -f gerrit/gerrit_nfs.yml
 helm install gerrit-master k8s-gerrit/helm-charts/gerrit -n default -f k8s-gerrit/helm-charts/gerrit/values.yaml
 
 ### INSTALAR JENKINS
+kubectl create -f jenkins/jenkins-ssh-key.yaml
+
 helm install jenkins jenkins/jenkins -f values_jenkins.yaml
 
 # INSTALAR SONARQUBE
@@ -95,6 +97,8 @@ Criar projeto com o mesmo nome.
 
 Adicionando via Administração -> Marketing o plugin do YAML Analyzer
 
+Project -> Settings -> CI/CD -> Variables -> Add "SONAR_LOGIN"
+
 **INTEGRAÇÃO GITLAB + KUBERNETES**
 
 API URL: kubectl cluster-info | grep -E 'Kubernetes master|Kubernetes control plane' | awk '/http/ {print $NF}'
@@ -102,5 +106,3 @@ API URL: kubectl cluster-info | grep -E 'Kubernetes master|Kubernetes control pl
 kubectl get secret default-token-bqqhn -o jsonpath="{['data']['ca\.crt']}" | base64 --decode
 
 TOKEN: kubectl describe secret gitlab-admin-token-8fbw4
-
-Project -> Settings -> CI/CD -> Variables -> Add "SONAR_LOGIN"
